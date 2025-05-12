@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Checkpoint</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fdf6f0;
+      color: #5d4037;
+      padding: 2em;
+    }
+    .quiz-box {
+      max-width: 600px;
+      margin: auto;
+      background: #fff3e0;
+      padding: 2em;
+      border: 2px solid #ffcc80;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    .quiz-box h2 {
+      color: #a0522d;
+    }
+    .option {
+      margin: 1em 0;
+    }
+    .option input {
+      margin-right: 0.5em;
+    }
+    .submit-btn {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 0.75em 2em;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #ef6c00;
+    }
+    .feedback {
+      margin-top: 1em;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-box">
+  <h2>Checkpoint Quiz</h2>
+  <p>Which of the following is a benefit of using "X" in your workflow?</p>
+
+  <form id="quizForm">
+    <div class="option"><input type="radio" name="answer" value="A" /> It increases confusion</div>
+    <div class="option"><input type="radio" name="answer" value="B" /> It improves efficiency</div>
+    <div class="option"><input type="radio" name="answer" value="C" /> It adds unnecessary steps</div>
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+
+  <div class="feedback" id="feedbackMsg"></div>
+</div>
+
+<script>
+  const form = document.getElementById('quizForm');
+  const feedback = document.getElementById('feedbackMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (!selected) {
+      feedback.textContent = "Please select an answer.";
+      feedback.className = 'feedback wrong';
+      return;
+    }
+
+    if (selected.value === "B") {
+      feedback.textContent = "✅ Correct! Efficiency is a key benefit.";
+      feedback.className = 'feedback correct';
+    } else {
+      feedback.textContent = "❌ Try again. Think about what helps a workflow.";
+      feedback.className = 'feedback wrong';
+    }
+  });
+</script>
+
+</body>
+</html>
