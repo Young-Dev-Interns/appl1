@@ -2,93 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quiz Checkpoint</title>
+  <title>Module Completion</title>
   <style>
     body {
       font-family: sans-serif;
-      background: #fdf6f0;
-      color: #5d4037;
+      background-color: #fdf6f0;
       padding: 2em;
+      color: #5d4037;
     }
-    .quiz-box {
+
+    .completion-box {
+      background-color: #fff3e0;
+      border: 2px solid #ffcc80;
+      border-radius: 12px;
+      padding: 2em;
       max-width: 600px;
       margin: auto;
-      background: #fff3e0;
-      padding: 2em;
-      border: 2px solid #ffcc80;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
-    .quiz-box h2 {
+
+    .completion-box h1 {
       color: #a0522d;
     }
-    .option {
+
+    .lesson-list {
+      text-align: left;
       margin: 1em 0;
+      padding: 0;
+      list-style: none;
     }
-    .option input {
-      margin-right: 0.5em;
+
+    .lesson-list li {
+      padding: 0.5em 0;
+      border-bottom: 1px dashed #ccc;
     }
-    .submit-btn {
-      background: #ff9800;
+
+    .summary-info {
+      margin: 1em 0;
+      font-size: 0.95rem;
+    }
+
+    .reward-message {
+      background: #ffe0b2;
+      padding: 1em;
+      border-radius: 8px;
+      font-weight: bold;
+      margin: 1em 0;
+      color: #a0522d;
+    }
+
+    .complete-btn {
+      background-color: #ff9800;
       color: white;
       border: none;
       padding: 0.75em 2em;
       font-size: 1rem;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
     }
-    .submit-btn:hover {
-      background: #ef6c00;
+
+    .complete-btn:hover {
+      background-color: #ef6c00;
     }
-    .feedback {
+
+    .qr-preview {
       margin-top: 1em;
-      font-weight: bold;
     }
-    .correct {
-      color: green;
-    }
-    .wrong {
-      color: red;
+
+    .qr-preview img {
+      width: 120px;
+      height: 120px;
+      border: 1px dashed #a1887f;
+      padding: 0.5em;
     }
   </style>
 </head>
 <body>
 
-<div class="quiz-box">
-  <h2>Checkpoint Quiz</h2>
-  <p>Which of the following is a benefit of using "X" in your workflow?</p>
+<div class="completion-box">
+  <h1>🎉 Congratulations!</h1>
+  <p>You’ve successfully completed <strong>Module 1: Basics of X</strong></p>
 
-  <form id="quizForm">
-    <div class="option"><input type="radio" name="answer" value="A" /> It increases confusion</div>
-    <div class="option"><input type="radio" name="answer" value="B" /> It improves efficiency</div>
-    <div class="option"><input type="radio" name="answer" value="C" /> It adds unnecessary steps</div>
-    <button type="submit" class="submit-btn">Submit</button>
-  </form>
+  <div class="summary-info">
+    ⏱ Time Spent: 14 minutes<br />
+    📚 Lessons Covered:
+  </div>
 
-  <div class="feedback" id="feedbackMsg"></div>
+  <ul class="lesson-list">
+    <li>Lesson 1: Introduction to X</li>
+    <li>Lesson 2: Why X Matters</li>
+    <li>Lesson 3: X in Practice</li>
+    <li>Lesson 4: Common Mistakes</li>
+    <li>Lesson 5: Summary and Wrap-up</li>
+  </ul>
+
+  <div class="reward-message">
+    🏅 You earned 20 points and unlocked the "Quick Start" badge!
+  </div>
+
+  <button class="complete-btn" onclick="showQRCode()">Mark as Complete</button>
+
+  <div class="qr-preview" id="qrPreview" style="display:none;">
+    <p>Your updated QR Code:</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=LEVEL3&size=120x120" alt="QR Code" />
+  </div>
 </div>
 
 <script>
-  const form = document.getElementById('quizForm');
-  const feedback = document.getElementById('feedbackMsg');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const selected = document.querySelector('input[name="answer"]:checked');
-    if (!selected) {
-      feedback.textContent = "Please select an answer.";
-      feedback.className = 'feedback wrong';
-      return;
-    }
-
-    if (selected.value === "B") {
-      feedback.textContent = "✅ Correct! Efficiency is a key benefit.";
-      feedback.className = 'feedback correct';
-    } else {
-      feedback.textContent = "❌ Try again. Think about what helps a workflow.";
-      feedback.className = 'feedback wrong';
-    }
-  });
+  function showQRCode() {
+    document.getElementById('qrPreview').style.display = 'block';
+  }
 </script>
 
 </body>
